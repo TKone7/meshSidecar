@@ -109,7 +109,6 @@
         # doesn't change based on mesh provider
         serviceConfig.PrivateNetwork = lib.mkDefault true;
         serviceConfig.BindPaths = ["/etc/netns/%N/resolv.conf:/etc/resolv.conf"];
-        serviceConfig.PrivateTmp = lib.mkDefault false;
       })
       cfg.services;
     meshNameMap = lib.mapAttrs (k: v:
@@ -313,6 +312,7 @@
           # PrivateUsers = true; # Needs to be root for network stuff, but can we grant these privs another way?
           PrivateNetwork = true;
           PrivateMounts = true;
+          PrivateTmp = true;
           ProtectHome = true;
           PrivateDevices = false; #true
           # tailscale does routing things?
