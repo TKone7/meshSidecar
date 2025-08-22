@@ -107,7 +107,7 @@
           then  lib.mkAfter ["netbird@%N.service"]
           else lib.mkAfter ["tailscale@%N.service"];
         # doesn't change based on mesh provider
-        serviceConfig.PrivateNetwork = lib.mkForce true;
+        serviceConfig.PrivateNetwork = lib.mkDefault true;
         serviceConfig.BindPaths = ["/etc/netns/%N/resolv.conf:/etc/resolv.conf"];
       })
       cfg.services;
