@@ -308,6 +308,7 @@
             # ${pkgs.tailscale}/bin/tailscaled -state 'mem:' &
             ${pkgs.tailscale}/bin/tailscaled -statedir "$STATE_DIRECTORY" -socket "$RUNTIME_DIRECTORY/tailscaled.sock" &
             ${pkgs.tailscale}/bin/tailscale -socket "$RUNTIME_DIRECTORY/tailscaled.sock" up --ssh --accept-dns=true --hostname="$MESH_NAME" --authkey="file:$CREDENTIALS_DIRECTORY/auth-key"
+            ${pkgs.tailscale}/bin/tailscale -socket "$RUNTIME_DIRECTORY/tailscaled.sock" funnel --bg 7000"
           ''} %i";
           NoNewPrivileges = true;
           # PrivateUsers = true; # Needs to be root for network stuff, but can we grant these privs another way?
