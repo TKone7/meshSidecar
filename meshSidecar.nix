@@ -109,6 +109,7 @@
         # doesn't change based on mesh provider
         serviceConfig.PrivateNetwork = lib.mkDefault true;
         serviceConfig.BindPaths = ["/etc/netns/%N/resolv.conf:/etc/resolv.conf"];
+        serviceConfig.PrivateTmp = lib.mkDefault false;
       })
       cfg.services;
     meshNameMap = lib.mapAttrs (k: v:
