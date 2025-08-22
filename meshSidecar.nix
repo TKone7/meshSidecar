@@ -102,11 +102,11 @@
           if cfg.provider == "netbird"
           then ["netbird@%N.service"]
           else ["tailscale@%N.service"];
-       #  unitConfig.JoinsNamespaceOf =
-       #    if cfg.provider == "netbird"
-       #    then  lib.mkAfter ["netbird@%N.service"]
-       #    else lib.mkAfter ["tailscale@%N.service"];
-        serviceConfig.NetworkNamespacePath = "/run/netns/%N";
+        unitConfig.JoinsNamespaceOf =
+          if cfg.provider == "netbird"
+          then  lib.mkAfter ["netbird@%N.service"]
+          else lib.mkAfter ["tailscale@%N.service"];
+        # serviceConfig.NetworkNamespacePath = "/run/netns/%N";
         # doesn't change based on mesh provider
         serviceConfig.PrivateNetwork = lib.mkDefault true;
         serviceConfig.BindPaths = ["/etc/netns/%N/resolv.conf:/etc/resolv.conf"];
